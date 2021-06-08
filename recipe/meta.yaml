@@ -29,6 +29,10 @@ requirements:
 test:
   imports:
     - apispec
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/marshmallow-code/apispec
