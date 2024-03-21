@@ -12,11 +12,12 @@ source:
 
 build:
   number: 0
+  skip: True  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - python >=3.8
+    - python
     - pip
     - wheel
     - setuptools
@@ -45,7 +46,7 @@ about:
   description: |
     A pluggable API specification generator. Currently supports the OpenAPI
     specification (f.k.a. Swagger 2.0).
-  doc_url: http://apispec.readthedocs.io/
+  doc_url: https://apispec.readthedocs.io/
   dev_url: https://github.com/marshmallow-code/apispec
 
 extra:
