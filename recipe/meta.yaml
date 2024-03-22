@@ -19,14 +19,14 @@ requirements:
   host:
     - python
     - pip
-    - wheel
-    - setuptools
     - flit-core <4
 
   run:
     - python 
     - pyyaml >=3.10
     - packaging >=21.3
+  run_constrained:
+    - marshmallow >=3.18.0
 
 test:
   imports:
