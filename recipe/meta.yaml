@@ -21,19 +21,26 @@ requirements:
     - flit-core <4
   run:
     - python
-    - pyyaml >=3.10
     - packaging >=21.3
   run_constrained:
     - marshmallow >=3.18.0
-    - PyYAML >=3.10
+    - pyyaml >=3.10
 
 test:
+  source_files:
+    - tests
   imports:
     - apispec
   requires:
     - pip
+    - pytest
+    - marshmallow
+    - pyyaml
+    - openapi-spec-validator
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v tests
 
 about:
   home: https://github.com/marshmallow-code/apispec
@@ -44,7 +51,7 @@ about:
   description: |
     A pluggable API specification generator. Currently supports the OpenAPI
     specification (f.k.a. Swagger 2.0).
-  doc_url: https://apispec.readthedocs.io/
+  doc_url: https://apispec.readthedocs.io
   dev_url: https://github.com/marshmallow-code/apispec
 
 extra:
