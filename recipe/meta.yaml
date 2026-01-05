@@ -37,6 +37,7 @@ test:
     - marshmallow
     - pyyaml
     - openapi-spec-validator
+    - requests
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
