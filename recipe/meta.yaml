@@ -1,13 +1,13 @@
 {% set name = "apispec" %}
-{% set version = "6.9.0" %}
+{% set version = "6.10.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7a38ce7c3eedc7771e6e33295afdd8c4b0acdd9865b483f8cf6cc369c93e8d1e
+  sha256: 0a888555cd4aa5fb7176041be15684154fd8961055e1672e703abf737e8761bf
 
 build:
   number: 0
@@ -23,14 +23,18 @@ requirements:
     - python
     - packaging >=21.3
   run_constrained:
-    - marshmallow >=3.18.0
     - pyyaml >=3.10
+    - marshmallow >=3.18.0
 
 test:
   source_files:
     - tests
   imports:
     - apispec
+  commands:
+    - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v tests
   requires:
     - pip
     - pytest
@@ -38,10 +42,6 @@ test:
     - pyyaml
     - openapi-spec-validator
     - requests
-  commands:
-    - pip check
-    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest -v tests
 
 about:
   home: https://github.com/marshmallow-code/apispec
