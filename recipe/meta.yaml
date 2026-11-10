@@ -1,5 +1,5 @@
 {% set name = "apispec" %}
-{% set version = "6.10.0" %}
+{% set version = "6.10.1" %}
 
 package:
   name: {{ name }}
@@ -7,23 +7,23 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0a888555cd4aa5fb7176041be15684154fd8961055e1672e703abf737e8761bf
+  sha256: 46896cb0cab23b4e853e528528937719739f836358832bb8610edd14db1d9c01
 
 build:
   number: 0
-  skip: true  # [py<310]
+  skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
     - python
     - pip
-    - flit-core <4
+    - flit-core <5
   run:
     - python
     - packaging >=21.3
   run_constrained:
-    - pyyaml >=3.10
+    - PyYAML >=3.10
     - marshmallow >=3.18.0
 
 test:
